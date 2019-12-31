@@ -30,7 +30,7 @@ class MaxonMotor(object):
         
         self.RMNodeId = USHORT(RMNodeId)
         self.pDeviceName = CHAR(pDeviceName)
-        self.pProtocolStackName = CHAR(pProtocolStackName)
+        self.pProtocolStackName = CHAR(pProtocolStackName.encode('utf-8'))
         self.pInterfaceName = CHAR(pInterfaceName)
         self.pPortName = CHAR(pPortName)
         self.lBaudrate = UINT(lBaudrate)
