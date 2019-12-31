@@ -131,29 +131,28 @@ class MaxonMotor(object):
         self.CloseAllDevices = self.rotationMotor.VCS_CloseAllDevices
         self.CloseAllDevices.argtypes = [POINTER(UINT)]
         self.CloseAllDevices.restype = BOOL
-            
         self.open_device()
-       
+
     def print_usage(self):
-        print "Usage: Maxon EPOS MVision Dev"
-        print "node id (default 1)"
-        print "device name (EPOS2, EPOS4, default - EPOS4)"
-        print "protocol stack name (MAXON_RS232, CANopen, MAXON SERIAL V2, default - MAXON SERIAL v2)"
-        print "interface name(RS232, USB, CAN_ixx_usb 0, CAN_kvaser_usb 0, ... default - USB)"
-        print "port name (COM1, USB0, CAN0, ... default -USB0)"
-        print "baudrate (115200, 1000000, ... default - 1000000)"
-        print "list available interface (valid device name and protocol stack required)"
-        print "list suppoerted protocol(valid device name required)"
-        print "display device version"
+        print("Usage: Maxon EPOS MVision Dev")
+        print("node id (default 1)")
+        print("device name (EPOS2, EPOS4, default - EPOS4)")
+        print("protocol stack name (MAXON_RS232, CANopen, MAXON SERIAL V2, default - MAXON SERIAL v2)")
+        print("interface name(RS232, USB, CAN_ixx_usb 0, CAN_kvaser_usb 0, ... default - USB)")
+        print("port name (COM1, USB0, CAN0, ... default -USB0)")
+        print("baudrate (115200, 1000000, ... default - 1000000)")
+        print("list available interface (valid device name and protocol stack required)")
+        print("list suppoerted protocol(valid device name required)")
+        print("display device version")
 
     def print_setting(self):
-        print "default setting"
-        print "node id              =",self.RMNodeId
-        print "device name          =",self.pDeviceName
-        print "protocol stack name  =",self.pProtocolStackName
-        print "interface name       =",self.pInterfaceName
-        print "port name            =",self.pPortName
-        print "baudrate             =",self.lBaudrate
+        print("default setting")
+        print("node id              =",self.RMNodeId)
+        print("device name          =",self.pDeviceName)
+        print("protocol stack name  =",self.pProtocolStackName)
+        print("interface name       =",self.pInterfaceName)
+        print("port name            =",self.pPortName)
+        print("baudrate             =",self.lBaudrate)
     
     #def set_default_parameters(self):
         
@@ -164,11 +163,11 @@ class MaxonMotor(object):
         oIsFault = BOOL(0)
         oIsEnabled = BOOL(0)
 
-        print "Open Maxon Device-----"
+        print("Open Maxon Device-----")
         self.RMHandle = self.OpenDevice(self.pDeviceName, self.pProtocolStackName, self.pInterfaceName, self.pPortName, byref(self.errorCode))
         #self.RMHandle = OpenDevice(CHAR(2), CHAR("EPOS2"), CHAR("MAXON SERIAL V2"), CHAR("USB"), CHAR("USB0"), byref(self.errorCode))
 
-        print "Maxon code:", self.RMHandle, self.errorCode.value
+        print("Maxon code:", self.RMHandle, self.errorCode.value)
         if self.max_speed() == 0:
            return Result
 
