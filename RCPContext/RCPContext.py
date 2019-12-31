@@ -6,40 +6,40 @@ class RCPContext:
 
     def __init__(self):
 	
-	# ---------------------------------------------------------------------------------------------
+	    # ---------------------------------------------------------------------------------------------
         # define the mutex to avoid concurency
         # ---------------------------------------------------------------------------------------------
         self.inputLock = threading.Lock()
         self.outputLock = threading.Lock()
         
-	# ---------------------------------------------------------------------------------------------
+	    # ---------------------------------------------------------------------------------------------
         # message sequences
         # ---------------------------------------------------------------------------------------------
-	# catheter control commandes in speed mode
-	self.catheterMoveInstructionSequence = []
-	
-	# guidewire control commandes in speed mode
+	    # catheter control commandes in speed mode
+        self.catheterMoveInstructionSequence = []
+
+	    # guidewire control commandes in speed mode
         self.guidewireProgressInstructionSequence = []
         self.guidewireRotateInstructionSequence = []
 
-	# guidewire control commandes in position mode
-	self.guidewireMovingDistance = []
+        # guidewire control commandes in position mode
+        self.guidewireMovingDistance = []
 
-	# to be verified...
+        # to be verified...
         self.contrastMediaPushInstructionSequence = []
-	self.injectionCommandSequence = []
+        self.injectionCommandSequence = []
         self.retractInstructionSequence = []
 
-	# system control
-	self.closeSessionSequence = []
+        # system control
+        self.closeSessionSequence = []
 
-	# ---------------------------------------------------------------------------------------------
-        # system status variable 
         # ---------------------------------------------------------------------------------------------
-	self.systemStatus = True
+        # system status variable
+        # ---------------------------------------------------------------------------------------------
+        self.systemStatus = True
     
     def append_close_session_msg(self, close_session_msg):
-	self.closeSessionSequence.append(close_session_msg)
+	    self.closeSessionSequence.append(close_session_msg)
     
     def fetch_close_session_msg(self):
         self.inputLock.acquire()
@@ -73,21 +73,20 @@ class RCPContext:
         return length
 
     def close_system(self):
-	self.systemStatus = False
-	
-	self.catheterMoveInstructionSequence = []
+        self.systemStatus = False
+        self.catheterMoveInstructionSequence = []
         self.guidewireProgressInstructionSequence = []
         self.guidewireRotateInstructionSequence = []
         self.contrastMediaPushInstructionSequence = []
         self.retractInstructionSequence = []
         self.guidewireMovingDistance = []
-	self.closeSessionSequence = []
+        self.closeSessionSequence = []
 
     def open_system(self):
-	self.systemStatus = True
+        self.systemStatus = True
 
     def get_system_status(self):
-	return self.systemStatus
+        return self.systemStatus
 
     def clear(self):
         self.catheterMoveInstructionSequence = []
@@ -99,10 +98,10 @@ class RCPContext:
         self.closeSessionSequence = []
 
     def set_distance(self, dis):
-	self.guidewireMovingDistance.append(dis)
+        self.guidewireMovingDistance.append(dis)
 
     def fetch_latest_guidewire_moving_distance(self):
-	self.outputLock.acquire()
+        self.outputLock.acquire()
         length = len(self.guidewireMovingDistance)
         ret = self.guidewireMovingDistance[length-1]
         self.outputLock.release()
@@ -116,7 +115,7 @@ class RCPContext:
         return ret
 
     def get_latest_guidewire_moving_distance_sequence_length(self):
-	self.outputLock.acquire()
+        self.outputLock.acquire()
         length = len(self.guidewireMovingDistance)
         self.outputLock.release()
         return length   

@@ -1,7 +1,7 @@
 from RCPContext.RCPContext import RCPContext
-import RCPDatagram
-from MotorMsg import MotorMsg
-from InjectionMsg import InjectionMsg
+import RCPCom.RCPDatagram
+from RCPCom.MotorMsg import MotorMsg
+from RCPCom.InjectionMsg import InjectionMsg
 
 
 class RCPDatagramAnalyser:
@@ -14,8 +14,8 @@ class RCPDatagramAnalyser:
             2: "HandShakeCommitMsg",
             3: "MotorMsg",
             4: "CTImage",
-	    9: "InjectionMsg",
-	   10: "CloseSessionMsg"
+            9: "InjectionMsg",
+            10: "CloseSessionMsg"
         }
 
         self.switcher_instruction = {
@@ -27,7 +27,7 @@ class RCPDatagramAnalyser:
         }
 
     def analyse(self, cpt, datagram):
-	#print datagram.get_data_type()
+        #print datagram.get_data_type()
         if self.switcher[datagram.get_data_type()] == "HelloMsg":
             self.decode_hello_message(datagram)
         elif self.switcher[datagram.get_data_type()] == "HandShakeMsg":
@@ -38,23 +38,23 @@ class RCPDatagramAnalyser:
             self.decode_motor_message(datagram)
         elif self.switcher[datagram.get_data_type()] == "CTImage":
             pass
-	elif self.switcher[datagram.get_data_type()] == "CloseSessionMsg":
-	    self.decode_close_session_message(datagram)	
-	elif self.switcher[datagram.get_data_type()] == "InjectionMsg":
+        elif self.switcher[datagram.get_data_type()] == "CloseSessionMsg":
+	        self.decode_close_session_message(datagram)
+        elif self.switcher[datagram.get_data_type()] == "InjectionMsg":
             self.decode_injection_message(datagram)
-    	
+
     def decode_injection_message(self, datagram):	
         datagram_body = datagram.get_itc_datagram_body()
-	injection_msg = InjectionMsg(datagram)
-	self.context.append_new_injection_msg(injection_msg)	
+        injection_msg = InjectionMsg(datagram)
+        self.context.append_new_injection_msg(injection_msg)
 
     def decode_close_session_message(self, datagram):
-	datagram_body = datagram.get_itc_datagram_body()
-	#print "close session message ..."	
-	self.parent.close_session()	
+        datagram_body = datagram.get_itc_datagram_body()
+        # print "close session message ..."
+        self.parent.close_session()
 
     def decode_hello_message(self, datagram):
-	x = 1
+        x = 1
 
     def decode_motor_message(self, datagram):
         
