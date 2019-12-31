@@ -7,7 +7,7 @@ BOOL = c_int
 DWORD = c_ulong
 HANDLE = c_void_p
 UINT = c_uint
-CHAR = c_char_p
+INT = c_char_p
 USHORT = c_ushort
 LONG = c_long
 INT = c_int
@@ -29,10 +29,10 @@ class MaxonMotor(object):
         #Type redefine!
         
         self.RMNodeId = USHORT(RMNodeId)
-        self.pDeviceName = CHAR(pDeviceName)
-        self.pProtocolStackName = CHAR(pProtocolStackName)
-        self.pInterfaceName = CHAR(pInterfaceName)
-        self.pPortName = CHAR(pPortName)
+        self.pDeviceName = INT(pDeviceName)
+        self.pProtocolStackName = INT(pProtocolStackName)
+        self.pInterfaceName = INT(pInterfaceName)
+        self.pPortName = INT(pPortName)
         self.lBaudrate = UINT(lBaudrate)
         self.RMHandle = HANDLE(0)
         self.errorCode = UINT(0)
@@ -46,7 +46,7 @@ class MaxonMotor(object):
 
         #Open Device
         self.OpenDevice = self.rotationMotor.VCS_OpenDevice
-        self.OpenDevice.argtypes = [CHAR, CHAR, CHAR, CHAR, POINTER(UINT)]
+        self.OpenDevice.argtypes = [INT, INT, INT, INT, POINTER(UINT)]
         self.OpenDevice.restype = HANDLE
 
         #Communication Info
