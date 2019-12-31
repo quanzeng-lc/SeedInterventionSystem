@@ -43,13 +43,12 @@ class OrientalMotor(object):
         
         self.mv_enable = True
 
-    if self.mode:
-        self.moveTask = threading.Thread(None, self.continuous_move)
-        self.moveTask.start()
-#	else:
-#	    self.moveTask = threading.Thread(None, self.continuous_move_position)
-#            self.moveTask.start()
-
+        if self.mode:
+            self.moveTask = threading.Thread(None, self.continuous_move)
+            self.moveTask.start()
+        #	else:
+        #self.moveTask = threading.Thread(None, self.continuous_move_position)
+        #self.moveTask.start()
 
     def open_device(self):
         self.flag = True
@@ -100,7 +99,7 @@ class OrientalMotor(object):
         self.orientalMotorPushLock.acquire()
         # interval = 0.0005*60/self.speed
         if self.speed == 0:
-	        interval = 0
+            interval = 0
         else:
             interval = 0.0005*60/self.speed
             GPIO.output(self.pushIO, False)
@@ -124,7 +123,7 @@ class OrientalMotor(object):
         self.orientalMotorPullLock.release()
 
 
-    #Position Mode    #############################1
+    # Position Mode
     def set_position(self, volume):
         self.position = volume*self.re_vol_pos*2
         # print self.position
