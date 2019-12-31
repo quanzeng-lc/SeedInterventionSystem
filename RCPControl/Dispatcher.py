@@ -5,10 +5,10 @@ import threading
 import time
 import sys
 from RCPContext.RCPContext import RCPContext
-from OrientalMotor import OrientalMotor
+from RCPControl.OrientalMotor import OrientalMotor
 #from Gripper import Gripper
-from MaxonMotor import MaxonMotor
-from InfraredReflectiveSensor import InfraredReflectiveSensor
+from RCPControl.MaxonMotor import MaxonMotor
+from RCPControl.InfraredReflectiveSensor import InfraredReflectiveSensor
 #from EmergencySwitch import EmergencySwitch
 TRANS_EFFICIENT = float(2*16)/(529*60)
 
