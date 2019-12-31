@@ -164,11 +164,11 @@ class MaxonMotor(object):
         oIsFault = BOOL(0)
         oIsEnabled = BOOL(0)
 
-        print "Open Device-----"
+        print "Open Maxon Device-----"
         self.RMHandle = self.OpenDevice(self.pDeviceName, self.pProtocolStackName, self.pInterfaceName, self.pPortName, byref(self.errorCode))
         #self.RMHandle = OpenDevice(CHAR(2), CHAR("EPOS2"), CHAR("MAXON SERIAL V2"), CHAR("USB"), CHAR("USB0"), byref(self.errorCode))
 
-        print self.RMHandle, self.errorCode.value
+        print "Maxon code:", self.RMHandle, self.errorCode.value
         if self.max_speed() == 0:
            return Result
 
@@ -277,9 +277,9 @@ class MaxonMotor(object):
 ##################################################################################################################################################################################
 
 #test maxon motor to move on position mode
-#guidewireRotateMotor = MaxonMotor(1, "EPOS2", "MAXON SERIAL V2", "USB", "USB1", 1000000)
-#guidewireRotateMotor.rm_move_to_position(400,8000*50)
-#time.sleep(60)
+guidewireRotateMotor = MaxonMotor(2, "EPOS2", "MAXON SERIAL V2", "USB", "USB0", 1000000)
+guidewireRotateMotor.rm_move_to_position(2*800, 4000*100*16)
+#time.sleep(10)
 #guidewireRotateMotor.rm_halt_position_mode()
 
 
