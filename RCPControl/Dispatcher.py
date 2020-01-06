@@ -113,6 +113,7 @@ class Dispatcher(object):
                 return
 
     def storing_force_data(self):
+        print("force")
         while self.force_flag:
             data = list()
             force = self.force_sensor.aquireForce()
