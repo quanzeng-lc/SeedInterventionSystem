@@ -67,8 +67,9 @@ class Dispatcher(object):
 
         self.force_sensor = ForceSensor("/dev/ttyusb_force", 9600, 8, 'N', 1)
         self.obtain_force_task = threading.Thread(None, self.storing_force_data)
-        self.obtain_force_task.start()
         self.force_flag = True
+        self.obtain_force_task.start()
+
 
     def set_global_state(self, state):
 	    self.global_state = state
