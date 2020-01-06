@@ -9,7 +9,7 @@ import time
 # PORT = 1 
 #PORT = "/dev/ttyUSB0"
 
-class Feedback(object):
+class ForceSensor(object):
     
     def __init__(self, port, baudrate, bytesize, parity, stopbits):
         #serial parameter set

@@ -220,15 +220,6 @@ class MaxonMotor(object):
         self.ActivateProfilePositionMode(self.RMHandle, self.RMNodeId, byref(self.errorCode))
         self.SetPositionProfile(self.RMHandle, self.RMNodeId, UINT(positionModeSpeed), positionModeAcceleration, positionModeDeceleration, byref(self.errorCode))
         self.MoveToPosition(self.RMHandle, self.RMNodeId, LONG(targetRelativePosition), INT(0), INT(1), byref(self.errorCode))
-        
-        #if self.ActivateProfilePositionMode(self.RMHandle, self.RMNodeId, byref(self.errorCode)) != 0:
-            #if self.SetPositionProfile(self.RMHandle, self.RMNodeId, positionModeSpeed, positionModeAcceleration, positionModeDeceleration, byref(self.errorCode)) != 0:
-                #print self.SetPositionProfile(self.RMHandle, self.RMNodeId, positionModeSpeed, positionModeAcceleration, positionModeDeceleration, byref(self.errorCode))
-                #Result = 0
-                #print self.MoveToPosition(self.RMHandle, self.RMNodeId, LONG(targetRelativePosition), INT(0), INT(1), byref(self.errorCode))
-                #time.sleep(3)
-                #if self.MoveToPosition(self.RMHandle, self.RMNodeId, LONG(targetRelativePosition), INT(0), INT(1), byref(self.errorCode)) == 0:
-                    #Result = 0
         return Result
 
     #Halt Position Mode
@@ -262,22 +253,13 @@ class MaxonMotor(object):
         self.ActivateProfileVelocityMode(self.RMHandle, self.RMNodeId, byref(self.errorCode))
 
         self.MoveWithVelocity(self.RMHandle, self.RMNodeId, LONG(TargetVelocity), byref(self.errorCode))
-       
-	#if self.ActivateProfilePositionMode(self.RMHandle, self.RMNodeId, byref(self.errorCode)) != 0:
-            #if self.SetPositionProfile(self.RMHandle, self.RMNodeId, positionModeSpeed, positionModeAcceleration, positionModeDeceleration, byref(self.errorCode)) != 0:
-                #print self.SetPositionProfile(self.RMHandle, self.RMNodeId, positionModeSpeed, positionModeAcceleration, positionModeDeceleration, byref(self.errorCode))
-                #Result = 0
-		#print self.MoveToPosition(self.RMHandle, self.RMNodeId, LONG(targetRelativePosition), INT(0), INT(1), byref(self.errorCode)2
-                #time.sleep(3)
-                #if self.MoveToPosition(self.RMHandle, self.RMNodeId, LONG(targetRelativePosition), INT(0), INT(1), byref(self.errorCode)) == 0:
-                    #Result = 0
         return Result        
 
 ##################################################################################################################################################################################
 
 #test maxon motor to move on position mode
-guidewireRotateMotor = MaxonMotor(2, "EPOS2", "MAXON SERIAL V2", "USB", "USB0", 1000000)
-guidewireRotateMotor.rm_move_to_position(2*800, 4000*100*16)
+#guidewireRotateMotor = MaxonMotor(2, "EPOS2", "MAXON SERIAL V2", "USB", "USB0", 1000000)
+#guidewireRotateMotor.rm_move_to_position(2*800, 4000*100*16)
 #time.sleep(10)
 #guidewireRotateMotor.rm_halt_position_mode()
 

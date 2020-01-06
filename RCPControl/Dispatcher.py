@@ -4,11 +4,13 @@
 import threading
 import time
 import sys
+import csv
 from RCPContext.RCPContext import RCPContext
 from RCPControl.OrientalMotor import OrientalMotor
 #from Gripper import Gripper
 from RCPControl.MaxonMotor import MaxonMotor
 from RCPControl.InfraredReflectiveSensor import InfraredReflectiveSensor
+from RCPControl.ForceSensor import ForceSensor
 #from EmergencySwitch import EmergencySwitch
 TRANS_EFFICIENT = float(2*16)/(529*60)
 
@@ -32,11 +34,12 @@ class Dispatcher(object):
         self.needToRetract = False
         self.draw_back_guidewire_curcuit_flag = True
         self.number_of_cycles = 0
+        self.force_flag = False
 	    # ---------------------------------------------------------------------------------------------
 	    # execution units of the interventional robot
 	    # ---------------------------------------------------------------------------------------------
-        self.frontNeedleMotor = MaxonMotor(2, "EPOS2", "MAXON SERIAL v2", "USB", "USB0", 1000000)
-        self.backNeedleMotor = MaxonMotor(1, "EPOS2", "MAXON SERIAL V2", "USB", "USB1", 1000000)
+        self.agencyMotor = MaxonMotor(2, "EPOS2", "MAXON SERIAL v2", "USB", "USB0", 1000000)
+        self.particleMotor = MaxonMotor(1, "EPOS2", "MAXON SERIAL V2", "USB", "USB1", 1000000)
 	
 	    # ---------------------------------------------------------------------------------------------
         # TODO : haptic sensors
@@ -61,7 +64,12 @@ class Dispatcher(object):
         if local_mode == 0:
        	    self.dispatchTask = threading.Thread(None, self.do_parse_commandes_in_context)
        	    self.dispatchTask.start()
-        
+
+        self.force_sensor = ForceSensor("ttyusb_force", 9600, 8, 'N', 1)
+        self.obtain_force_task = threading.Thread(None, self.storing_force_data)
+        self.obtain_force_task.start()
+        self.force_flag = True
+
     def set_global_state(self, state):
 	    self.global_state = state
 
@@ -69,8 +77,8 @@ class Dispatcher(object):
     	# determine system's status and start to decode or to close devices
         while self.flag:
             if not self.context.get_system_status():
-                self.frontNeedleMotor.close_device()
-                self.backNeedleMotor.close_device()
+                self.agencyMotor.close_device()
+                self.particleMotor.close_device()
                 self.flag = False
                 print("system terminated")
             else:
@@ -92,14 +100,38 @@ class Dispatcher(object):
                 return
             elif msg.get_motor_orientation() == 0:
             # self.frontNeedleMotor.rm_move_to_position(-msg.get_motor_speed(), 8000)
-                self.frontNeedleMotor.rm_move(realTargetVelocity)
+                self.agencyMotor.rm_move(realTargetVelocity)
                 return
         elif self.context.get_guidewire_progress_instruction_sequence_length() > 0:
             msg = self.context.fetch_latest_guidewire_progress_move_msg()
             if msg.get_motor_orientation() == 1: 
-                self.backNeedleMotor.rm_move(-msg.get_motor_speed()*5)
+                self.particleMotor.rm_move(-msg.get_motor_speed() * 5)
                 return
             elif msg.get_motor_orientation() == 0:
-                self.backNeedleMotor.rm_move(msg.get_motor_speed()*5)
+                self.particleMotor.rm_move(msg.get_motor_speed() * 5)
                 return
+
+    def storing_force_data(self):
+        while self.force_flag:
+            data = list()
+            force = self.force_sensor.aquireForce()
+            data.append(str(force))
+            if len(data) >= 100:
+                path = "./hapticData/hapticForce.csv"
+                for var in data:
+                    with open(path, 'a+') as f:
+                        csv_writer = csv.writer(f)
+                        csv_writer.writerow(data)
+            time.sleep(0.050)
+
+    def stop_storing_data(self):
+        self.force_flag = False
+
+
+dispatcher = Dispatcher(1, 1)
+dispatcher.agencyMotor.rm_move_to_position(2*800, 4000*100*16)
+time.sleep(20)
+dispatcher.particleMotor.rm_move_to_position(2*800, 4000*100*16)
+time.sleep(20)
+dispatcher.stop_storing_data()
 
