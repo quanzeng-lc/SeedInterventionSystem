@@ -4,10 +4,10 @@
 import threading
 import time
 import sys
+sys.path.append("../")
 import csv
 from RCPContext.RCPContext import RCPContext
 from RCPControl.OrientalMotor import OrientalMotor
-#from Gripper import Gripper
 from RCPControl.MaxonMotor import MaxonMotor
 from RCPControl.InfraredReflectiveSensor import InfraredReflectiveSensor
 from RCPControl.ForceSensor import ForceSensor
