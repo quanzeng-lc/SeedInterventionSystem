@@ -131,7 +131,7 @@ class MaxonMotor(object):
         self.CloseAllDevices = self.rotationMotor.VCS_CloseAllDevices
         self.CloseAllDevices.argtypes = [POINTER(UINT)]
         self.CloseAllDevices.restype = BOOL
-        
+
         self.open_device()
 
     def print_usage(self):

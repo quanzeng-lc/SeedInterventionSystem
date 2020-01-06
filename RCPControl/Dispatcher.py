@@ -117,7 +117,7 @@ class Dispatcher(object):
             force = self.force_sensor.aquireForce()
             data.append(str(force))
             if len(data) >= 100:
-                path = "./hapticData/hapticForce.csv"
+                path = "./hapticForce.csv"
                 for var in data:
                     with open(path, 'a+') as f:
                         csv_writer = csv.writer(f)
