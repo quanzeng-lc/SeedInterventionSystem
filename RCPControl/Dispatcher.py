@@ -122,7 +122,7 @@ class Dispatcher(object):
             tmpdata.append(force)
             data.append(tmpdata)
             if len(data) >= 100:
-                print("force", str(force))
+                #print("force", str(force))
                 path = "hapticForce.csv"
                 for var in data:
                     with open(path, 'a+') as f:
