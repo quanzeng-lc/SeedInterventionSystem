@@ -120,14 +120,16 @@ class Dispatcher(object):
             tmpdata = list()
             tmpdata.append(timestamps)
             tmpdata.append(force)
+            tmpdata.append("\n")
             data.append(tmpdata)
+
             if len(data) >= 100:
                 #print("force", str(force))
                 path = "hapticForce.csv"
                 for var in data:
                     with open(path, 'a+') as f:
                         csv_writer = csv.writer(f)
-                        csv_writer.writerow(data)
+                        csv_writer.writerow(data + "\n")
                 del data[0:100]
             time.sleep(0.050)
 
