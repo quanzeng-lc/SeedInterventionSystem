@@ -11,19 +11,19 @@ from EmergencySwitch import EmergencySwitch
 class InfraredReflectiveSensor(object):
     def __init__(self):
         self.doutBack = 2
-	    self.doutFront = 3
+        self.doutFront = 3
     	self.flag = True
 
-	GPIO.setmode(GPIO.BCM)
-	GPIO.setwarnings(False)
+	    GPIO.setmode(GPIO.BCM)
+	    GPIO.setwarnings(False)
 
-	GPIO.setup(self.doutBack, GPIO.IN)
-	GPIO.setup(self.doutFront, GPIO.IN)
+	    GPIO.setup(self.doutBack, GPIO.IN)
+	    GPIO.setup(self.doutFront, GPIO.IN)
 
         self.switch = EmergencySwitch()
 
     def read_current_state(self):
-	back = GPIO.input(self.doutBack)
+	    back = GPIO.input(self.doutBack)
         front = GPIO.input(self.doutFront)
         emSwitch = self.switch.read_current_state() 
 
