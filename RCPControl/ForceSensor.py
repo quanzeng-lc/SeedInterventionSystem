@@ -3,7 +3,6 @@ import modbus_tk
 import modbus_tk.defines as cst
 from modbus_tk import modbus_rtu
 import struct
-import thread
 import time
 
 # PORT = 1 
