@@ -12,7 +12,7 @@ class ForceSensor(object):
     
     def __init__(self, port, baudrate, bytesize, parity, stopbits):
         #serial parameter set
-        self.PORT = port
+        self.port = port
         self.baudrate = baudrate
         self.bytesize = bytesize
         self.parity = parity
