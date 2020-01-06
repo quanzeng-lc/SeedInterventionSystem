@@ -11,7 +11,7 @@ from EmergencySwitch import EmergencySwitch
 class InfraredReflectiveSensor(object):
     def __init__(self):
         self.doutBack = 2
-	self.doutFront = 3
+	    self.doutFront = 3
     	self.flag = True
 
 	GPIO.setmode(GPIO.BCM)
