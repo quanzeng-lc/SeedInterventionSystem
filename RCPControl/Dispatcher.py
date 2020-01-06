@@ -119,7 +119,7 @@ class Dispatcher(object):
             timestamps = time.time()
             tmpdata = list()
             tmpdata.append(timestamps)
-            tmpdata.append(str(force))
+            tmpdata.append(force)
             data.append(tmpdata)
             if len(data) >= 100:
                 print("force", str(force))
