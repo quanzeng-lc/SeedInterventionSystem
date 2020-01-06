@@ -129,7 +129,7 @@ class Dispatcher(object):
                 for var in data:
                     with open(path, 'a+') as f:
                         csv_writer = csv.writer(f)
-                        csv_writer.writerow(data + "\n")
+                        csv_writer.writerow(data)
                 del data[0:100]
             time.sleep(0.050)
 
