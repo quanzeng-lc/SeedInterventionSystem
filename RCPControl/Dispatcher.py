@@ -118,8 +118,10 @@ class Dispatcher(object):
             timestamps = time.time()
             localtime  = time.localtime(timestamps)
             tmpdata = list()
+            m_second = (timestamps-int(timestamps))*1000
             tmpdata.append(localtime.tm_min)
             tmpdata.append(localtime.tm_sec)
+            tmpdata.append(m_second)
             tmpdata.append(force)
             path = "hapticForce.csv"
             with open(path, 'a+') as f:
