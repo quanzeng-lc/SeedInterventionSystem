@@ -135,12 +135,14 @@ class Dispatcher(object):
 
 dispatcher = Dispatcher(1, 1)
 print("please enter!")
+speed = 2.3
+pulse_speed = int((speed / 2)*33.3*60)
 progress_or_retract = input()
 if progress_or_retract == "backward":
-    dispatcher.agencyMotor.rm_move_to_position(2*2*1000, 4000*100*16)
+    dispatcher.agencyMotor.rm_move_to_position(pulse_speed, 4000*100*16)
     print("backward")
 elif progress_or_retract == "forward":
-    dispatcher.agencyMotor.rm_move_to_position(2 * 2 * 1000, -4000 * 100 * 16)
+    dispatcher.agencyMotor.rm_move_to_position(pulse_speed, -4000 * 100 * 16)
     print("forward")
 else:
     print("exit")
