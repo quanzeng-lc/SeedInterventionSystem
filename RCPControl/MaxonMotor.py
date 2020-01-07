@@ -202,7 +202,7 @@ class MaxonMotor(object):
     #Max Speed
     def max_speed(self):
         Result = 0
-        if self.SetMaxProfileVelocity(self.RMHandle, self.RMNodeId, UINT(2000), byref(self.errorCode)) != BOOL(0):
+        if self.SetMaxProfileVelocity(self.RMHandle, self.RMNodeId, UINT(25000), byref(self.errorCode)) != BOOL(0):
             Result = 1
         return Result
 
