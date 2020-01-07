@@ -138,7 +138,7 @@ dispatcher = Dispatcher(1, 1)
 #time.sleep(70)
 #dispatcher.agencyMotor.rm_move_to_position(12*2*1000, 4000*100*16)
 #time.sleep(70)
-dispatcher.particleMotor.rm_move_to_position(800, 4000)
+dispatcher.particleMotor.rm_move_to_position(8000, 4000*10)
 time.sleep(20)
 dispatcher.stop_storing_data()
 
