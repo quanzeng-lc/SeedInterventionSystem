@@ -134,9 +134,9 @@ class Dispatcher(object):
 
 
 dispatcher = Dispatcher(1, 1)
-dispatcher.agencyMotor.rm_move_to_position(4*2*800, -4000*100*16)
+dispatcher.agencyMotor.rm_move_to_position(8*2*800, -4000*100*16)
 time.sleep(70)
-dispatcher.agencyMotor.rm_move_to_position(4*2*800, 4000*100*16)
+dispatcher.agencyMotor.rm_move_to_position(8*2*800, 4000*100*16)
 #dispatcher.particleMotor.rm_move_to_position(2*800, 4000*100*16)
 #time.sleep(20)
 time.sleep(70)
