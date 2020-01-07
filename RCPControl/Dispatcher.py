@@ -134,6 +134,7 @@ class Dispatcher(object):
 
 
 dispatcher = Dispatcher(1, 1)
+print("please enter!")
 progress_or_retract = input()
 if progress_or_retract == "backward":
     dispatcher.agencyMotor.rm_move_to_position(2*2*1000, 4000*100*16)
