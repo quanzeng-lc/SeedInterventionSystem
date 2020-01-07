@@ -144,7 +144,7 @@ elif progress_or_retract == "forward":
     print("forward")
 else:
     print("exit")
-    exit(0)
+    sys.exit(0)
 time.sleep(70)
 dispatcher.stop_storing_data()
 
