@@ -127,16 +127,16 @@ class Dispatcher(object):
             with open(path, 'a+') as f:
                 csv_writer = csv.writer(f)
                 csv_writer.writerow(tmpdata)
-            time.sleep(0.050)
+            time.sleep(0.020)
 
     def stop_storing_data(self):
         self.force_flag = False
 
 
 dispatcher = Dispatcher(1, 1)
-dispatcher.agencyMotor.rm_move_to_position(12*2*800, -4000*100*16)
+dispatcher.agencyMotor.rm_move_to_position(12*2*1000, -4000*100*16)
 time.sleep(70)
-dispatcher.agencyMotor.rm_move_to_position(12*2*800, 4000*100*16)
+dispatcher.agencyMotor.rm_move_to_position(12*2*1000, 4000*100*16)
 #dispatcher.particleMotor.rm_move_to_position(2*800, 4000*100*16)
 #time.sleep(20)
 time.sleep(70)
