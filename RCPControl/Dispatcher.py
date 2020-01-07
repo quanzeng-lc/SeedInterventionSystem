@@ -134,7 +134,7 @@ class Dispatcher(object):
 
 
 dispatcher = Dispatcher(1, 1)
-dispatcher.agencyMotor.rm_move_to_position(2*2*1000, -4000*100*2)
+dispatcher.agencyMotor.rm_move_to_position(2*2*1000, 4000*100*2)
 time.sleep(70)
 #dispatcher.agencyMotor.rm_move_to_position(2*2*1000, 4000*100*1)
 #time.sleep(70)
