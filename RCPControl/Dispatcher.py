@@ -134,11 +134,16 @@ class Dispatcher(object):
 
 
 dispatcher = Dispatcher(1, 1)
-dispatcher.agencyMotor.rm_move_to_position(2*2*1000, -4000*100*16)
+progress_or_retract = input()
+if progress_or_retract == "backward":
+    dispatcher.agencyMotor.rm_move_to_position(2*2*1000, 4000*100*16)
+    print("backward")
+elif progress_or_retract == "forward":
+    dispatcher.agencyMotor.rm_move_to_position(2 * 2 * 1000, -4000 * 100 * 16)
+    print("forward")
+else:
+    print("exit")
+    exit(0)
 time.sleep(70)
-#dispatcher.agencyMotor.rm_move_to_position(2*2*1000, 4000*100*1)
-#time.sleep(70)
-#dispatcher.particleMotor.rm_move_to_position(8000, 4000*10)
-#time.sleep(20)
 dispatcher.stop_storing_data()
 
