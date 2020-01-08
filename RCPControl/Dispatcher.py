@@ -113,17 +113,20 @@ class Dispatcher(object):
                 return
 
     def storing_force_data(self):
+        path = "hapticForce.csv"
         while self.force_flag:
             force = self.force_sensor.aquireForce()
             timestamps = time.time()
             localtime  = time.localtime(timestamps)
             tmpdata = list()
             m_second = int((timestamps-int(timestamps))*1000)
+            tmpdata.append(localtime.tm_hour)
             tmpdata.append(localtime.tm_min)
             tmpdata.append(localtime.tm_sec)
             tmpdata.append(m_second)
+            tmpdata.append(self.agencyMotor.profile_position())
             tmpdata.append(force)
-            path = "hapticForce.csv"
+
             with open(path, 'a+') as f:
                 csv_writer = csv.writer(f)
                 csv_writer.writerow(tmpdata)
