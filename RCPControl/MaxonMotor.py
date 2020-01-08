@@ -254,7 +254,12 @@ class MaxonMotor(object):
         self.ActivateProfileVelocityMode(self.RMHandle, self.RMNodeId, byref(self.errorCode))
 
         self.MoveWithVelocity(self.RMHandle, self.RMNodeId, LONG(TargetVelocity), byref(self.errorCode))
-        return Result        
+        return Result
+
+    def rm_halt(self):
+        rt = self.HaltVelocityMovement()
+        if rt == 0:
+            print("HaltVelocityMovement", rt, "error code", self.errorCode)
 
 ##################################################################################################################################################################################
 
