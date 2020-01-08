@@ -257,7 +257,7 @@ class MaxonMotor(object):
     def profile_position(self):
         position = INT(0)
         rf = self.GetPosition(self.RMHandle, self.RMNodeId, byref(position), byref(self.errorCode))
-        self.profile_position_relative = (position / self.position_resolution*self.gear)*self.lead
+        self.profile_position_relative = (int(position) / self.position_resolution*self.gear)*self.lead
         if rf == 0:
             print("GetPosition", rf, "error code", self.errorCode)
         return self.profile_position_relative
