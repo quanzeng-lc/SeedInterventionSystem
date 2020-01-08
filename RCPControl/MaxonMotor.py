@@ -39,8 +39,8 @@ class MaxonMotor(object):
         self.lTimeout = UINT(0)
 
         # self.relativePosition = LONG(relativePosition)
-        self.profile_position_relative = INT(0)
-        self.profile_position_velosity = INT(0)
+        self.profile_position_relative = 0
+        self.profile_position_velosity = 0
         self.lead = 2  # 2mm
         self.gear = 33.3
         self.position_resolution = 4000
@@ -229,14 +229,6 @@ class MaxonMotor(object):
         Result = 1
         if self.HaltPositionMovement(self.RMHandle, self.RMNodeId, byref(self.errorCode)) == BOOL(0):
             Result = 0
-        return Result
-
-    #Get Position and Speed Info
-    def rm_speed_and_position(self):
-        Result = 0
-        if self.GetPosition(self.RMHandle, self.RMNodeId, byref(self.profile_position_relative), byref(self.errorCode)) != BOOL(0):
-            if self.GetVelocity(self.RMHandle, self.RMNodeId, byref(self.profile_position_velosity), byref(self.errorCode)) != BOOL(0):
-                Result = 1
         return Result
 
     #Close Device
