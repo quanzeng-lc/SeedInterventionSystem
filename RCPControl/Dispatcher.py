@@ -142,14 +142,18 @@ class Dispatcher(object):
 
 dispatcher = Dispatcher(1, 1)
 print("please enter!")
-speed = 2.3
+speed = 4
 pulse_speed = int((speed / 2)*33.3*60)
-progress_or_retract = input()
-if progress_or_retract == "backward":
-    dispatcher.agencyMotor.rm_move_to_position(pulse_speed, 4000*100*16)
+type_input = input()
+type_input_array = type_input.split(" ")
+relative_position = int(type_input_array[1])
+direction = type_input_array[0]
+relative_position_qc = int((relative_position / 2)*33.3*4000)
+if direction[0] == "backward":
+    dispatcher.agencyMotor.rm_move_to_position(pulse_speed, relative_position_qc)
     print("backward")
-elif progress_or_retract == "forward":
-    dispatcher.agencyMotor.rm_move_to_position(pulse_speed, -4000 * 100 * 16)
+elif direction[1] == "forward":
+    dispatcher.agencyMotor.rm_move_to_position(pulse_speed, -1*relative_position_qc)
     print("forward")
 else:
     print("exit")
