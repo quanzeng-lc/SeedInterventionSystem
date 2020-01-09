@@ -114,7 +114,6 @@ class Dispatcher(object):
 
     def storing_force_data(self):
         path = "hapticForce.csv"
-        data = list()
         while self.force_flag:
             force = self.force_sensor.aquireForce()
             timestamps = time.time()
@@ -127,14 +126,11 @@ class Dispatcher(object):
             tmpdata.append(m_second)
             #tmpdata.append(self.agencyMotor.profile_position())
             tmpdata.append(force)
-            data.append(tmpdata)
-            if len(data) >= 100:
-                for var in data:
-                    with open(path, 'a+') as f:
-                        csv_writer = csv.writer(f)
-                        csv_writer.writerow(var)
-                        f.write('\r\n')
-                del data[0:100]
+            with open(path, 'a+') as f:
+                csv_writer = csv.writer(f)
+                csv_writer.writerow(tmpdata)
+                f.write('\r\n')
+                del tmpdata
             time.sleep(0.020)
 
     def stop_storing_data(self):
