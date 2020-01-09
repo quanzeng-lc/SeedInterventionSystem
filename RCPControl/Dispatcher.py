@@ -142,10 +142,10 @@ class Dispatcher(object):
 
 dispatcher = Dispatcher(1, 1)
 print("please enter!")
-speed = 5
-pulse_speed = int((speed / 2)*33.3*60)
 type_input = input()
 type_input_array = type_input.split(" ")
+speed = int(type_input_array[2])
+pulse_speed = int((speed / 2)*33.3*60)
 relative_position = int(type_input_array[1])
 direction = type_input_array[0]
 relative_position_qc = int((relative_position / 2)*33.3*4000)
