@@ -144,9 +144,9 @@ dispatcher = Dispatcher(1, 1)
 print("please enter!")
 type_input = input()
 type_input_array = type_input.split(" ")
-speed = int(type_input_array[2])
+relative_position = int(type_input_array[2])
+speed = int(type_input_array[1])
 pulse_speed = int((speed / 2)*33.3*60)
-relative_position = int(type_input_array[1])
 direction = type_input_array[0]
 relative_position_qc = int((relative_position / 2)*33.3*4000)
 if direction[0] == "backward":
