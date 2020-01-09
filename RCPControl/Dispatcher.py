@@ -159,6 +159,6 @@ else:
     print("exit")
     dispatcher.stop_storing_data()
     sys.exit(0)
-time.sleep(70)
+time.sleep(50)
 dispatcher.stop_storing_data()
 
