@@ -152,7 +152,7 @@ relative_position_qc = int((relative_position / 2)*33.3*4000)
 if direction[0] == "backward":
     dispatcher.agencyMotor.rm_move_to_position(pulse_speed, relative_position_qc)
     print("backward")
-elif direction[1] == "forward":
+elif direction[0] == "forward":
     dispatcher.agencyMotor.rm_move_to_position(pulse_speed, -1*relative_position_qc)
     print("forward")
 else:
