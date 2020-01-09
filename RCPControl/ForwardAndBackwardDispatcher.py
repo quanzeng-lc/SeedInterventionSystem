@@ -125,7 +125,7 @@ class Dispatcher(object):
             tmpdata.append(localtime.tm_min)
             tmpdata.append(localtime.tm_sec)
             tmpdata.append(m_second)
-            tmpdata.append(self.agencyMotor.profile_position())
+            #tmpdata.append(self.agencyMotor.profile_position())
             tmpdata.append(force)
             data.append(tmpdata)
             if len(data) >= 1000:
