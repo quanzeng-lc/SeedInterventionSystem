@@ -124,7 +124,7 @@ class Dispatcher(object):
             tmpdata.append(localtime.tm_min)
             tmpdata.append(localtime.tm_sec)
             tmpdata.append(m_second)
-            #tmpdata.append(self.agencyMotor.profile_position())
+            tmpdata.append(self.agencyMotor.profile_position())
             tmpdata.append(force)
             with open(path, 'a+') as f:
                 csv_writer = csv.writer(f)
