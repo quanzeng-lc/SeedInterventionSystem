@@ -142,7 +142,7 @@ class Dispatcher(object):
 
 dispatcher = Dispatcher(1, 1)
 print("please enter!")
-speed = 4
+speed = 5
 pulse_speed = int((speed / 2)*33.3*60)
 type_input = input()
 type_input_array = type_input.split(" ")
