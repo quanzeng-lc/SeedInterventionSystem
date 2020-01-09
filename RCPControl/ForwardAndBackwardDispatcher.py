@@ -128,13 +128,13 @@ class Dispatcher(object):
             #tmpdata.append(self.agencyMotor.profile_position())
             tmpdata.append(force)
             data.append(tmpdata)
-            if len(data) >= 1000:
+            if len(data) >= 100:
                 for var in data:
                     with open(path, 'a+') as f:
                         csv_writer = csv.writer(f)
                         csv_writer.writerow(var)
                         f.write('\r\n')
-                del data[0:1000]
+                del data[0:100]
             time.sleep(0.020)
 
     def stop_storing_data(self):
